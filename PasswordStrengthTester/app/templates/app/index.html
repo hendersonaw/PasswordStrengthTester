@@ -1,0 +1,29 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <h1>Password Strength Analyzer</h1>
+    <p class="lead">This web page allows you to test the strength of your password 
+        and give you a score based on length and use of alphanumeric and non-alphanumeric characters.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Getting started</h2>
+        <p>
+            This tool will determine if your email address has been in a security breach, as well as perform a strength assessment on the given password. 
+            Simply type in your email address and a password in the provided fields to determine the strength of your account. 
+        </p>
+        <p>
+            <b><u>NOTE: Never, ever give out your username/password to an untrusted website!</u></b>
+        </p>
+        <p>Email address:</p><input>
+        <br><br>
+        <p>Password:</p><input type="password">
+        <br><br>
+        <p><a class="btn btn-primary" href="https://haveibeenpwned.com/api/v3/breachedaccount/rocky357h@gmail.com">Analyze Password</a></p>
+    </div>
+</div>
+
+{% endblock %}
