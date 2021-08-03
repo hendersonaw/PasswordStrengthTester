@@ -13,33 +13,34 @@ def home(request):
         request,
         'app/index.html',
         {
-            'title':'Home Page',
+            'title':'Home',
             'year':datetime.now().year,
         }
     )
 
-def contact(request):
-    """Renders the contact page."""
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/contact.html',
-        {
-            'title':'Contact',
-            'message':'Your contact page.',
-            'year':datetime.now().year,
-        }
-    )
+## Calculates password strength score
+def results(request):
 
-def about(request):
-    """Renders the about page."""
-    assert isinstance(request, HttpRequest)
+    # Get email and password from POST request:
+    form = request.POST
+    email = form.get("email")
+    password = form.get("password")
+
+    # Tests for password strength: 
+    
+
+    # Use HaveIBeenPwned API v3 to determine if email address 
+    #   has been involved in a security breach: 
+
+    # Display final strength score: 
+
+    # Display if user's email address has been comprimised: 
+
     return render(
         request,
-        'app/about.html',
+        'app/results.html',
         {
-            'title':'About',
-            'message':'Your application description page.',
-            'year':datetime.now().year,
+            'title':'Results',
+            'year':datetime.now().year
         }
     )

@@ -18,11 +18,17 @@
         <p>
             <b><u>NOTE: Never, ever give out your username/password to an untrusted website!</u></b>
         </p>
-        <p>Email address:</p><input>
-        <br><br>
-        <p>Password:</p><input type="password">
-        <br><br>
-        <p><a class="btn btn-primary" href="https://haveibeenpwned.com/api/v3/breachedaccount/na@na.com">Analyze Password</a></p>
+        <form method="POST" action="results">
+            {% csrf_token %}
+            <label>Email address:</label>
+            <input type="email" name="email" required>
+            <br><br>
+            <label>Password:</label>
+            <input type="password" name="password" required>
+            <br><br>
+            <!-- <p><a class="btn btn-primary" href="https://haveibeenpwned.com/api/v3/breaches">Analyze Password</a></p> -->
+            <input class="btn btn-primary" type="submit" value="Analyze Password">
+        </form>
     </div>
 </div>
 
