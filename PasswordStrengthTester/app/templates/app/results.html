@@ -3,15 +3,20 @@
 {% block content %}
 
 <h2>{{ title }}</h2>
-<h3>Final Strength Score: {{ score }}/100</h3>
-<h4>{{ message }}</h4>
+<h3>Final Password Strength Score: {{ score }}/100</h3>
+<h4>&emsp;{{ message }}</h4>
 
-<p>This website uses the Have I Been Pwned: API v3 to determine if your email address has been involved in a security breach.</p>
+<h3>Email status:</h3>
+<h4>&emsp;{{ statusMessage }}</h4>
 <br>
+
 
 <form method="POST" action="/">
     {% csrf_token %}
     <input class="btn btn-primary" type="submit" value="Return to Home">
 </form>
+
+<br>
+<p>This website uses the Have I Been Pwned: API v3 to determine if your email address has been involved in a security breach.</p>
 
 {% endblock %}

@@ -21,12 +21,11 @@
         <form method="POST" action="results">
             {% csrf_token %}
             <label>Email address:</label>
-            <input type="email" name="email" >
+            <input type="email" name="email" required>
             <br><br>
             <label>Password:</label>
             <input type="password" name="password" required>
             <br><br>
-            <!-- <p><a class="btn btn-primary" href="https://haveibeenpwned.com/api/v3/breaches">Analyze Password</a></p> -->
             <input class="btn btn-primary" type="submit" value="Analyze Password">
         </form>
     </div>

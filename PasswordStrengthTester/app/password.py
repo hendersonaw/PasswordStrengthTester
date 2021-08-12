@@ -1,3 +1,5 @@
+__author__ = 'Aaron Henderson'
+
 class Password:
     """Takes a password and determines password strength."""
 
