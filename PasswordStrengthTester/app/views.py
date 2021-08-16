@@ -5,6 +5,7 @@ Definition of views.
 from datetime import datetime
 from django.shortcuts import render
 from django.http import HttpRequest
+from requests.exceptions import RequestException
 from .password import Password
 import pypwned, os, json
 
@@ -20,8 +21,9 @@ def home(request):
         }
     )
 
-## Calculates password strength score
 def results(request):
+    """Calculates password strength score."""
+    assert isinstance(request, HttpRequest)
 
     # Get email and password from POST request:
     form = request.POST
@@ -34,9 +36,18 @@ def results(request):
     #   has been involved in a security breach: 
     hibp_key = os.environ.get("HIBP_API_KEY")
     pwny = pypwned.pwned(hibp_key)
-    statusMessage = pwny.getAllBreachesForAccount(email=emailAddress)
+    try:
+        apiMessage = pwny.getAllBreachesForAccount(email=emailAddress)
+    except RequestException:
+        apiMessage = "Sorry, could not reach HaveIBeenPwned servers. Make sure your Internet connection is stable and try again."
 
     # TODO: Format statusMessage into human-readable format. 
+    if type(apiMessage) is str:
+        statusMessage = apiMessage
+    else:
+        statusMessage = "| "
+        for apiData in apiMessage:
+            statusMessage += apiData['Name'] + " | "
 
     # Display if user's email address has been compromised: 
 
@@ -49,5 +60,17 @@ def results(request):
             'message':pw.RankStrengthScore,
             'statusMessage':statusMessage,
             'year':datetime.now().year
+        }
+    )
+
+def passwordRequirements(request):
+    """Renders the password requirements page."""
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/password-requirements.html',
+        {
+            'title':'Password Requirements',
+            'year':datetime.now().year,
         }
     )
