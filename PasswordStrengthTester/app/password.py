@@ -150,13 +150,10 @@ class Password:
             return None
 
         passwordFile = open(os.getcwd() + "\\1MillionBannedPasswords.txt", "r")
-        word = passwordFile.readline().strip()
-        while word:
-            if word == self.password:
-                self.FoundBannedPassword()
-                break;
-            else:
-                word = passwordFile.readline().strip()
+        passwordList = passwordFile.read()
+
+        if self.password in passwordList:
+            self.FoundBannedPassword()
 
         passwordFile.close()
 
