@@ -41,7 +41,7 @@ def results(request):
     except RequestException:
         apiMessage = "Sorry, could not reach HaveIBeenPwned servers. Make sure your Internet connection is stable and try again."
 
-    # TODO: Format statusMessage into human-readable format. 
+    # Format statusMessage into human-readable format. 
     if type(apiMessage) is str:
         statusMessage = apiMessage
     else:
